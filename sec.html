@@ -1,0 +1,36 @@
+<table border = "1">
+    <tr style = "font-weight:bold;">
+        <td> No </td>
+        <td> Nama </td>
+        <td> Alamat </td>
+        <td> Bintang </td>
+        <td> ID </td>
+    </tr>
+    <?php
+    $no = 1 ; 
+    $query = $_POST ['query']; 
+    if ($query != '') {
+        $select = mysqli_query ($conn, "SELECT * FROM tb_hotel WHERE Nama LIKE '".$query."' "); 
+    }
+
+    else {
+        $select = mysqli_query ($conn, "SELECT * FROM tb_hotel");    
+    }
+        while ($baris = mysqli_fetch_array($select)) {
+?>
+
+
+<tr>
+<td> <?php echo $no++ ?> </td>
+<td> <?php echo $baris['Nama'] ?> </td>
+<td> <?php echo $baris['Alamat'] ?> </td>
+<td> <?php echo $baris['Bintang'] ?> </td>
+<td> <?php echo $baris['ID'] ?> </td>
+</tr>
+     <?php   } ?>
+
+
+    
+
+
+    </table>
