@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions service (complex)</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 60%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #warnings-panel {
+        width: 100%;
+        height:10%;
+        text-align: center;
+      }
+    </style>
+     <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+      <div id='cssmenu'>
+                       <ul>
+                       <li><a href='index.html'><span>Home</span></a></li>
+                       <li class='active has-sub'><a href='#'><span>Pilih Hotel bedasarkan kecamatan</span></a>
+                          <ul>
+                             <li class='has-sub'><a href='tanjung%20karang.html'><span>Tanjung Karang Pusat</span></a>
+                             </li>
+                              <li class='has-sub'><a href='kemiling.html'><span>Kemiling</span></a>
+                             </li>
+                             <li class='has-sub'><a href='way%20halim.html'><span>Way halim</span></a>
+                             </li>
+                             <li class='has-sub'><a href='telukbetung.html'><span>Teluk Betung</span></a>
+                             </li>
+                             <li class='has-sub'><a href='enggal.html'><span>Enggal</span></a>
+                             </li>
+                             <li class='has-sub'><a href='sukaraja.html'><span>Sukaraja</span></a>
+                             </li>
+                             <li class='has-sub'><a href='enggal.html'><span>Kedamaian</span></a>
+                             </li>
+                             <li class='has-sub'><a href='sukaraja.html'><span>Rajabasa</span></a>
+                             </li>
+                        </ul>
+                    
+                       </li>
+                       <li><a href='index.php'><span>Daftar Hotel</span></a></li>
+                       <li class='last'><a href='kontak.html'><span>Contact</span></a></li>
+                        <li class='active has-sub'><a href='#'><span>Overlays Image Hotel</span></a>
+                          <ul>
+                             <li class='has-sub'><a href='pop.html'><span>Pop Hotelt</span></a>
+                             </li>
+                              <li class='has-sub'><a href='yunnahotel.html'><span>Yunna Hotel</span></a>
+                             </li>
+                             <li class='has-sub'><a href='bukit rindu.html'><span>Bukit Rindu Hotel</span></a>
+                             </li>
+                             <li class='has-sub'><a href='luxury hotel.html'><span>Luxury Hotel</span></a>
+                             </li>
+                             <li class='has-sub'><a href='nusantara syariah.html'><span>Nusantara Syariah Hotel</span></a>
+                             </li>
+                        
+                        </ul>
+                        <li><a href='Directions service (complex).html'><span>Petunjuk Hotel</span></a></li>
+                      </ul>
+                      </div>
+    <div id="floating-panel">
+    <b>Start: </b>
+    <select id="start">
+        <option value="Sheraton Lampung Hotel">Sheraton Lampung Hotel</option>
+        <option value="Swiss-Belhotel Lampung">Swiss-Belhotel Lampung</option>
+        <option value="Aston Lampung City Hotel">Aston Lampung City Hotel</option>
+        <option value="Emersia Hotel&Resort">Emersia Hotel&Resort</option>
+        <option value="Yunna Hotel">Yunna Hotel</option>
+        <option value="Batiqa Hotel">Batiqa Hotel</option>
+        <option value="POP! Hotel">POP! Hotel</option>
+        <option value="Bukit Randu HOtel&Restaurant">Bukit Randu HOtel&Restaurant</option>
+        <option value="Hotel Horison Lampung">Hotel Horison Lampung</option>
+        <option value="Hotel Andalas">Hotel Andalas</option>
+        <option value="Hotel Omah Akas">Hotel Omah Akas</option>
+        <option value="Hotel Bella">Hotel Bella</option>
+        <option value="Grand Anugerah Hotel">Grand Anugerah Hotel</option>
+        <option value="Amalia Hotel">Amalia Hotel</option>
+        <option value="Novotel Lampung">Novotel Lampung</option>
+        <option value="Hotel Sahid Bandar Lampung">Hotel Sahid Bandar Lampung</option>
+        <option value="Hotel Nusantara Syariah">Hotel Nusantara Syariah</option>
+        <option value="GHotel Syariah Bandar Lampung">GHotel Syariah Bandar Lampung</option>
+        <option value="Asoka Luxury Hotel">Asoka Luxury Hotel</option>
+        <option value="Griya Dharmala Hotel">Griya Dharmala Hotel</option>
+        <option value="Hotel Kridawisata">Hotel Kridawisata</option>
+        <option value="Swadex Hotel">Swadex Hotel</option>
+    </select>
+    <b>End: </b>
+    <select id="end">
+        <option value="Sheraton Lampung Hotel">Sheraton Lampung Hotel</option>
+        <option value="Swiss-Belhotel Lampung">Swiss-Belhotel Lampung</option>
+        <option value="Aston Lampung City Hotel">Aston Lampung City Hotel</option>
+        <option value="Emersia Hotel&Resort">Emersia Hotel&Resort</option>
+        <option value="Yunna Hotel">Yunna Hotel</option>
+        <option value="Batiqa Hotel">Batiqa Hotel</option>
+        <option value="POP! Hotel">POP! Hotel</option>
+        <option value="Bukit Randu HOtel&Restaurant">Bukit Randu HOtel&Restaurant</option>
+        <option value="Hotel Horison Lampung">Hotel Horison Lampung</option>
+        <option value="Hotel Andalas">Hotel Andalas</option>
+        <option value="Hotel Omah Akas">Hotel Omah Akas</option>
+        <option value="Hotel Bella">Hotel Bella</option>
+        <option value="Grand Anugerah Hotel">Grand Anugerah Hotel</option>
+        <option value="Amalia Hotel">Amalia Hotel</option>
+        <option value="Novotel Lampung">Novotel Lampung</option>
+        <option value="Hotel Sahid Bandar Lampung">Hotel Sahid Bandar Lampung</option>
+        <option value="Hotel Nusantara Syariah">Hotel Nusantara Syariah</option>
+        <option value="GHotel Syariah Bandar Lampung">GHotel Syariah Bandar Lampung</option>
+        <option value="Asoka Luxury Hotel">Asoka Luxury Hotel</option>
+        <option value="Griya Dharmala Hotel">Griya Dharmala Hotel</option>
+        <option value="Hotel Kridawisata">Hotel Kridawisata</option>
+        <option value="Swadex Hotel">Swadex Hotel</option>
+    </select>
+    </div>
+    <div id="map"></div>
+    &nbsp;
+    <div id="warnings-panel"></div>
+    <script>
+      function initMap() {
+        var markerArray = [];
+
+        // Instantiate a directions service.
+        var directionsService = new google.maps.DirectionsService;
+
+        // Create a map and center it on Manhattan.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: {lat: -5.4284046, lng: 105.2006967} 
+        });
+
+        // Create a renderer for directions and bind it to the map.
+        var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
+
+        // Instantiate an info window to hold step text.
+        var stepDisplay = new google.maps.InfoWindow;
+
+        // Display the route between the initial start and end selections.
+        calculateAndDisplayRoute(
+            directionsDisplay, directionsService, markerArray, stepDisplay, map);
+        // Listen to change events from the start and end lists.
+        var onChangeHandler = function() {
+          calculateAndDisplayRoute(
+              directionsDisplay, directionsService, markerArray, stepDisplay, map);
+        };
+        document.getElementById('start').addEventListener('change', onChangeHandler);
+        document.getElementById('end').addEventListener('change', onChangeHandler);
+      }
+
+      function calculateAndDisplayRoute(directionsDisplay, directionsService,
+          markerArray, stepDisplay, map) {
+        // First, remove any existing markers from the map.
+        for (var i = 0; i < markerArray.length; i++) {
+          markerArray[i].setMap(null);
+        }
+
+        // Retrieve the start and end locations and create a DirectionsRequest using
+        // WALKING directions.
+        directionsService.route({
+          origin: document.getElementById('start').value,
+          destination: document.getElementById('end').value,
+          travelMode: 'WALKING'
+        }, function(response, status) {
+          // Route the directions and pass the response to a function to create
+          // markers for each step.
+          if (status === 'OK') {
+            document.getElementById('warnings-panel').innerHTML =
+                '<b>' + response.routes[0].warnings + '</b>';
+            directionsDisplay.setDirections(response);
+            showSteps(response, markerArray, stepDisplay, map);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+
+      function showSteps(directionResult, markerArray, stepDisplay, map) {
+        // For each step, place a marker, and add the text to the marker's infowindow.
+        // Also attach the marker to an array so we can keep track of it and remove it
+        // when calculating new routes.
+        var myRoute = directionResult.routes[0].legs[0];
+        for (var i = 0; i < myRoute.steps.length; i++) {
+          var marker = markerArray[i] = markerArray[i] || new google.maps.Marker;
+          marker.setMap(map);
+          marker.setPosition(myRoute.steps[i].start_location);
+          attachInstructionText(
+              stepDisplay, marker, myRoute.steps[i].instructions, map);
+        }
+      }
+
+      function attachInstructionText(stepDisplay, marker, text, map) {
+        google.maps.event.addListener(marker, 'click', function() {
+          // Open an info window when the marker is clicked on, containing the text
+          // of the step.
+          stepDisplay.setContent(text);
+          stepDisplay.open(map, marker);
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCojIfYtnnBBTZKlPe5Wvb-KnDPoV5kVWA&libraries=places&callback=initMap">
+    </script>
+  </body>
+</html>
